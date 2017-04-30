@@ -40,10 +40,18 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
 
         table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')  
-        self.assertTrue(
-            any(row.text == '1: Buy peacock feathers' for row in rows),
-            "New to-do item did not appear in table"
+        rows = table.find_elements_by_tag_name('tr')
+
+        # self.assertTrue(
+        #     any(row.text == '1: Buy peacock feathers' for row in rows),
+        #     "New to-do item did not appear in table. Contents were:\n{}".format(table.text)
+        # )
+        # replaces the above any function
+        self.assertIn('1: Buy peacock feathers', [row.text for row in rows])
+
+        self.assertIn(
+            '2: Use peacock feathers to make a fly',
+             [row.text for row in rows]
         )
 
         # There is still a text box inviting her to add another item. She
