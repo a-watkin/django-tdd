@@ -3,8 +3,13 @@ from selenium.webdriver.common.keys import Keys
 import time
 import unittest
 
+from django.test import LiveServerTestCase
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
 
-class NewVisitorTest(unittest.TestCase):  
+# you have to inherit from LiveServerTestCase
+class NewVisitorTest(LiveServerTestCase):  
 
     # remember, only methods that begin with test_ will get run as tests, so you
     # can use other methods for your own purposes
@@ -25,7 +30,9 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):  
         # Edith has heard about a cool new online to-do app. She goes
         # to check out its homepage
-        self.browser.get('http://localhost:8000')
+        # 
+        # uses the server url
+        self.browser.get(self.live_server_url)
 
         # She notices the page title and header mention to-do lists
         header_text = self.browser.find_element_by_tag_name('h1').text
@@ -46,7 +53,7 @@ class NewVisitorTest(unittest.TestCase):
         # When she hits enter, the page updates, and now the page lists
         # "1: Buy peacock feathers" as an item in a to-do list table
         inputbox.send_keys(Keys.ENTER)  
-        time.sleep(20)
+        time.sleep(1)
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
