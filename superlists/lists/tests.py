@@ -24,23 +24,13 @@ class HomePageTest(TestCase):
     def test_redirects_after_POST(self):
         response = self.client.post('/', data={'item_text': 'A new list item'})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/')
+        self.assertEqual(response['location'], '/lists/the-only-list-in-the-world/')
 
 
     def test_only_saves_items_when_necessary(self):
         self.client.get('/')
         self.assertEqual(Item.objects.count(), 0)
 
-
-    def test_displays_all_list_items(self):
-        # sets up the test
-        Item.objects.create(text='itemey 1')
-        Item.objects.create(text='itemey 2')
-        # calls code under test
-        response = self.client.get('/')
-        # checks
-        self.assertIn('itemey 1', response.content.decode())
-        self.assertIn('itemey 2', response.content.decode())
 
 class ItemModelTest(TestCase):
 
@@ -69,4 +59,25 @@ class ItemModelTest(TestCase):
         self.assertEqual(second_saved_item.text, 'Item the second')
 
 
-    
+class ListViewTest(TestCase):
+
+    def test_uses_list_template(self):
+        response = self.client.get('/lists/the-only-list-in-the-world/')
+        self.assertTemplateUsed(response, 'list.html')
+
+
+    # Here’s a new helper method: instead of using the slightly annoying
+    # assertIn/response.content.decode() dance, Django provides the
+    # assertContains method which knows how to deal with responses and the
+    # bytes of their content.
+    def test_displays_all_items(self):
+        Item.objects.create(text='itemey 1')
+        Item.objects.create(text='itemey 2')
+
+        response = self.client.get('/lists/the-only-list-in-the-world/')
+
+        # assertContains is a django method that knows how to decode already
+        self.assertContains(response, 'itemey 1')  
+        self.assertContains(response, 'itemey 2')  
+
+

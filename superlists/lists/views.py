@@ -34,8 +34,11 @@ def home_page(request):
         # saves object to database
         Item.objects.create(text=request.POST['item_text'])
         # redirect to start page
-        return redirect('/')
-    # if not post then just load the page
-    # load the items from the model and pass them to the page
+        return redirect('/lists/the-only-list-in-the-world/')
+    return render(request, 'home.html')
+
+def view_list(request):
+    # gets all the items from the database
     items = Item.objects.all()
-    return render(request, 'home.html', {'items': items})
+    # passes the items to the page as items
+    return render(request, 'list.html', {'items': items})
