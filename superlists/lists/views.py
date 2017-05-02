@@ -35,10 +35,19 @@ def home_page(request):
 def new_list(request):
     list_ = List.objects.create()
     Item.objects.create(text=request.POST['item_text'], list=list_)
-    return redirect('/lists/the-only-list-in-the-world/')
+    return redirect('/lists/{}/'.format(list_.id))
 
-def view_list(request):
-    # gets all the items from the database
-    items = Item.objects.all()
+# list_id is captured from the url.py capture group (.+)
+def view_list(request, list_id):
+    list_ = List.objects.get(id=list_id)
+
     # passes the items to the page as items
-    return render(request, 'list.html', {'items': items})
+    return render(request, 'list.html', {'list': list_})
+
+def add_item(request, list_id):
+    # gets a reference to the list_id object passed in the url
+    list_ = List.objects.get(id=list_id)
+    # adds the post data to the list_ object
+    Item.objects.create(text=request.POST['item_text'], list=list_)
+    # redirects to the page of that list
+    return redirect('/lists/{}/'.format( list_.id ) )
