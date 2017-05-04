@@ -1,19 +1,14 @@
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import time
-import unittest
-
-from django.test import LiveServerTestCase
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.common.keys import Keys
 import time
 
 
 MAX_WAIT = 10
 
 # you have to inherit from LiveServerTestCase
-class NewVisitorTest(LiveServerTestCase):  
+class NewVisitorTest(StaticLiveServerTestCase):  
 
     # remember, only methods that begin with test_ will get run as tests, so you
     # can use other methods for your own purposes
@@ -21,7 +16,8 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser = webdriver.Chrome('c:/Users/adam/Desktop/chromedriver.exe')
 
     # will execute even if there is an error
-    def tearDown(self):  
+    def tearDown(self):
+        self.browser.refresh()
         self.browser.quit()
 
     # def check_for_row_in_list_table(self, row_text):
@@ -110,6 +106,10 @@ class NewVisitorTest(LiveServerTestCase):
 
         ## We use a new browser session to make sure that no information
         ## of Edith's is coming through from cookies etc
+        
+        # bug workaround for windows
+        self.browser.refresh()
+
         self.browser.quit()
         self.browser = webdriver.Chrome('c:/Users/adam/Desktop/chromedriver.exe')
 
@@ -142,22 +142,22 @@ class NewVisitorTest(LiveServerTestCase):
 
     # tests that the css of the page has been applies
     def test_layout_and_styling(self):
-            # Edith goes to the home page
-            self.browser.get(self.live_server_url)
-            self.browser.set_window_size(1024, 768)
+        # Edith goes to the home page
+        self.browser.get(self.live_server_url)
+        self.browser.set_window_size(1024, 768)
 
-            # She notices the input box is nicely centered
-            inputbox = self.browser.find_element_by_id('id_new_item')
-            inputbox.send_keys('testing')
-            inputbox.send_keys(Keys.ENTER)
-            self.wait_for_row_in_list_table('1: testing')
-            inputbox = self.browser.find_element_by_id('id_new_item')
-            self.assertAlmostEqual(
-                inputbox.location['x'] + inputbox.size['width'] / 2,
-                512,
-                # margin of error
-                delta=10
-            )
+        # She notices the input box is nicely centered
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys('testing')
+        inputbox.send_keys(Keys.ENTER)
+        self.wait_for_row_in_list_table('1: testing')
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        self.assertAlmostEqual(
+            inputbox.location['x'] + inputbox.size['width'] / 2,
+            512,
+            # margin of error
+            delta=10
+        )
 
 
 if __name__ == '__main__':  
