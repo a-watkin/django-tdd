@@ -4,16 +4,28 @@ from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 import time
 
+import os
+
 
 MAX_WAIT = 10
 
 # you have to inherit from LiveServerTestCase
 class NewVisitorTest(StaticLiveServerTestCase):  
 
-    # remember, only methods that begin with test_ will get run as tests, so you
-    # can use other methods for your own purposes
-    def setUp(self):  
-        self.browser = webdriver.Chrome('c:/Users/adam/Desktop/chromedriver.exe')
+    # remember, only methods that begin with test_ will get run as tests, so
+    # you can use other methods for your own purposes  
+    # 
+    # Do you remember I said
+    # that LiveServerTestCase had certain limitations? Well, one is that it
+    # always assumes you want to use its own test server, which it makes
+    # available at self.live_server_url.
+    def setUp(self):
+        self.browser = webdriver.Chrome('C:/Users/adam/Desktop/chromedriver.exe')
+        # staging server by default uses djangos dev server
+        # this changes that so that it looks for an environmental variable 
+        staging_server = os.environ.get('STAGING_SERVER') 
+        if staging_server:
+            self.live_server_url = 'http://' + staging_server  
 
     # will execute even if there is an error
     def tearDown(self):
