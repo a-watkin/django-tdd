@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn server for awatkin.eu
+
+[Service]
+Restart=on-failure  
+User=adam  
+WorkingDirectory=/home/adam/sites/awatkin.eu/source  
+ExecStart=/home/adam/sites/awatkin.eu/virtualenv/bin/gunicorn \
+    --bind unix:/tmp/awatkin.eu.socket \
+    superlists.wsgi:application  
+
+[Install]
+WantedBy=multi-user.target 
