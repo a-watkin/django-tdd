@@ -1,9 +1,10 @@
 import os
 import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from selenium.common.exceptions import WebDriverException
 from selenium import webdriver
 
-# to run a single test file
+# to run a single test file:
 # python manage.py test functional_tests.test_list_item_validation
 
 MAX_WAIT = 10
@@ -50,3 +51,18 @@ class FunctionalTest(StaticLiveServerTestCase):
                 if time.time() - start_time > MAX_WAIT:  
                     raise e  
                 time.sleep(0.5)  
+
+    # helper method that ensures that a function runs before selenium
+    # looks for items on the page
+    # expects to be passed a function
+    def wait_for(self, fn):
+        start_time = time.time()
+        while True:
+            try:
+                # calls the function that was passed to it
+                # returns its response
+                return fn()  
+            except (AssertionError, WebDriverException) as e:
+                if time.time() - start_time > MAX_WAIT:
+                    raise e
+                time.sleep(0.5)
