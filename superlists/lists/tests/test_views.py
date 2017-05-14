@@ -5,6 +5,9 @@ from lists.views import home_page
 # for the database tests
 from lists.models import Item, List
 
+# django escapes apostrophes
+# this is used so you can match strings to that
+from django.utils.html import escape
 
 # this is the refactored version of the class above 
 class HomePageTest(TestCase):
@@ -96,3 +99,22 @@ class NewListTest(TestCase):
         )
 
         self.assertRedirects(response, '/lists/{}/'.format(correct_list.id))
+
+
+
+    def test_validation_errors_are_sent_back_to_home_page_template(self):
+        response = self.client.post('/lists/new', data={'item_text': ''})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'home.html')
+
+        # escape because there's an ' in the string and django html escapes those
+        expected_error = escape("You can't have an empty list item")
+        # print(response.content.decode())
+        self.assertContains(response, expected_error)
+
+
+    def test_invalid_list_items_arent_saved(self):
+        self.client.post('/lists/new', data={'item_text': ''})
+        self.assertEqual(List.objects.count(), 0)
+        self.assertEqual(Item.objects.count(), 0)
+
