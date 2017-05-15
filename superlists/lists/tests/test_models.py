@@ -50,7 +50,8 @@ class ListAndItemModelsTest(TestCase):
     def test_cannot_save_empty_list_items(self):
         list_ = List.objects.create()
         item = Item(list=list_, text='')
-        # tests that the assertion is raised
+        
+        # tests if the assertion is raised
         # this wraps around the item.save()
         with self.assertRaises(ValidationError):
             item.save()

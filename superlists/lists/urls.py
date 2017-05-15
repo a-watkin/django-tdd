@@ -34,6 +34,6 @@ urlpatterns = [
     # go to /lists/foo/, we get view_list(request, "foo").
     url(r'^(\d+)/$', views.view_list, name='view_list'),
 
-    url(r'^(\d+)/add_item$', views.add_item, name='add_item'),
+    # url(r'^(\d+)/add_item$', views.add_item, name='add_item'),
 
 ]

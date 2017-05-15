@@ -53,14 +53,22 @@ def new_list(request):
 def view_list(request, list_id):
     list_ = List.objects.get(id=list_id)
 
+    if request.method == 'POST':
+        # so if the method is post create an item object with the supplied
+        # text, then return that item list url
+        Item.objects.create(text=request.POST['item_text'], list=list_)
+        return redirect(f'/lists/{list_.id}/')
+
     # passes the items to the page as items
     return render(request, 'list.html', {'list': list_})
 
-def add_item(request, list_id):
-    # gets a reference to the list_id object passed in the url
-    list_ = List.objects.get(id=list_id)
-    # adds the post data to the list_ object
-    Item.objects.create(text=request.POST['item_text'], list=list_)
-    # redirects to the page of that list
-    return redirect('/lists/{}/'.format( list_.id ) )
+# replaced with the view above
+# 
+# def add_item(request, list_id):
+#     # gets a reference to the list_id object passed in the url
+#     list_ = List.objects.get(id=list_id)
+#     # adds the post data to the list_ object
+#     Item.objects.create(text=request.POST['item_text'], list=list_)
+#     # redirects to the page of that list
+#     return redirect('/lists/{}/'.format( list_.id ) )
 
