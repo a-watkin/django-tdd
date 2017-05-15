@@ -50,9 +50,13 @@ class ListAndItemModelsTest(TestCase):
     def test_cannot_save_empty_list_items(self):
         list_ = List.objects.create()
         item = Item(list=list_, text='')
-        
+
         # tests if the assertion is raised
         # this wraps around the item.save()
         with self.assertRaises(ValidationError):
             item.save()
             item.full_clean()
+
+    def test_get_absolute_url(self):
+        list_ = List.objects.create()
+        self.assertEqual(list_.get_absolute_url(), f'/lists/{list_.id}/')

@@ -47,7 +47,11 @@ def new_list(request):
 
         return render(request, 'home.html', {"error": error})
 
-    return redirect('/lists/{}/'.format(list_.id))
+    # return redirect('/lists/{}/'.format(list_.id))
+    # 
+    # does the same as above but using reverse lookup
+    # it's defined in the models module, get_absolute_url
+    return redirect(list_)
 
 # list_id is captured from the url.py capture group (.+)
 def view_list(request, list_id):
@@ -61,7 +65,8 @@ def view_list(request, list_id):
             item = Item(text=request.POST['item_text'], list=list_)
             item.full_clean()
             item.save()
-            return redirect(f'/lists/{list_.id}/')
+            # absolute url
+            return redirect(list_)
 
         except ValidationError:
             error = "You can't have an empty list item"
