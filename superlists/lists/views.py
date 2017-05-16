@@ -36,18 +36,15 @@ from lists.models import Item, List
 def home_page(request):
     return render(request, 'home.html', {'form': ItemForm()})
 
-def new_list(request):
-    list_ = List.objects.create()
-    item = Item.objects.create(text=request.POST['item_text'], list=list_)
-    try:
-        item.full_clean()
-        item.save()
-    except ValidationError:
-        # deletes the empty item so the test passes
-        list_.delete()
-        error = "You can't have an empty list item"
 
-        return render(request, 'home.html', {"error": error})
+def new_list(request):
+    form = ItemForm(data=request.POST)
+    if form.is_valid():
+        list_ = List.objects.create()
+        form.save(for_list=list_)
+        return redirect(list_)
+    else:
+        return render(request, 'home.html', {"form": form})
 
     # return redirect('/lists/{}/'.format(list_.id))
     # 
@@ -58,25 +55,13 @@ def new_list(request):
 # list_id is captured from the url.py capture group (.+)
 def view_list(request, list_id):
     list_ = List.objects.get(id=list_id)
-    error = None
-
+    form = ItemForm()
     if request.method == 'POST':
-        try:
-            # so if the method is post create an item object with the supplied
-            # text, then return that item list url
-            item = Item(text=request.POST['item_text'], list=list_)
-            item.full_clean()
-            item.save()
-            # absolute url
+        form = ItemForm(data=request.POST)
+        if form.is_valid():
+            form.save(for_list=list_)
             return redirect(list_)
-
-        except ValidationError:
-            error = "You can't have an empty list item"
-
-    # passes the items to the page as items
-    # 
-    # you must pass the error too
-    return render(request, 'list.html', {'list': list_, 'error': error})
+    return render(request, 'list.html', {'list': list_, "form": form})
 
 # replaced with the view above
 # 

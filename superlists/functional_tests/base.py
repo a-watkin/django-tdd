@@ -12,6 +12,10 @@ MAX_WAIT = 10
 # you have to inherit from LiveServerTestCase
 class FunctionalTest(StaticLiveServerTestCase):
 
+    # helper method for getting it_text
+    def get_item_input_box(self):
+        return self.browser.find_element_by_id('id_text')
+
     # remember, only methods that begin with test_ will get run as tests, so
     # you can use other methods for your own purposes  
     # 
