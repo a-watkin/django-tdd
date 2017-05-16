@@ -41,6 +41,7 @@ def new_list(request):
     form = ItemForm(data=request.POST)
     if form.is_valid():
         list_ = List.objects.create()
+        print('getting here')
         form.save(for_list=list_)
         return redirect(list_)
     else:

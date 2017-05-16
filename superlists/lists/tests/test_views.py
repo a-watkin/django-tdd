@@ -9,6 +9,9 @@ from lists.models import Item, List
 # this is used so you can match strings to that
 from django.utils.html import escape
 
+from lists.forms import ItemForm, EMPTY_ITEM_ERROR
+
+
 # this is the refactored version of the class above 
 class HomePageTest(TestCase):
     # don't test constants like html strings, test implementation
@@ -68,23 +71,18 @@ class ListViewTest(TestCase):
 class NewListTest(TestCase):
 
     def test_can_save_a_POST_request(self):
-        self.client.post('/lists/new', data={'item_text': 'A new list item'})
+        self.client.post('/lists/new', data={'text': 'A new list item'})
         # tests if the item is saved to the database
         self.assertEqual(Item.objects.count(), 1)
         new_item = Item.objects.first()
         self.assertEqual(new_item.text, 'A new list item')
 
 
+    # this fucking thing
     def test_redirects_after_POST(self):
-        response = self.client.post('/lists/new', data={'item_text': 'A new list item'})
-        # self.assertEqual(response.status_code, 302)
-        # self.assertEqual(response['location'], '/lists/the-only-list-in-the-world/')
-        # 
-        # the above two asserts can be replaced with:
-        # 
-        
+        response = self.client.post('/lists/new', data={'text': 'A new list item'})
         new_list = List.objects.first()
-        self.assertRedirects(response, '/lists/{}/'.format(new_list.id))
+        self.assertRedirects(response, f'/lists/{new_list.id}/')
 
 
     def test_can_save_a_POST_request_to_an_existing_list(self):
@@ -93,7 +91,7 @@ class NewListTest(TestCase):
 
         self.client.post(
             f'/lists/{correct_list.id}/',
-            data={'item_text': 'A new item for an existing list'}
+            data={'text': 'A new item for an existing list'}
         )
 
         self.assertEqual(Item.objects.count(), 1)
@@ -101,32 +99,52 @@ class NewListTest(TestCase):
         self.assertEqual(new_item.text, 'A new item for an existing list')
         self.assertEqual(new_item.list, correct_list)
 
+
     def test_POST_redirects_to_list_view(self):
         other_list = List.objects.create()
         correct_list = List.objects.create()
-
+        # so it has to be this? yup this breaks it
         response = self.client.post(
             f'/lists/{correct_list.id}/',
-            data={'item_text': 'A new item for an existing list'}
+            # should be text and not item_text
+            data={'text': 'A new item for an existing list'}
         )
-
         self.assertRedirects(response, '/lists/{}/'.format(correct_list.id))
 
+    # replaced by methods below
+    # def test_validation_errors_are_sent_back_to_home_page_template(self):
+    #     response = self.client.post('/lists/new', data={'item_text': ''})
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTemplateUsed(response, 'home.html')
 
-
-    def test_validation_errors_are_sent_back_to_home_page_template(self):
-        response = self.client.post('/lists/new', data={'item_text': ''})
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'home.html')
-
-        # escape because there's an ' in the string and django html escapes those
-        expected_error = escape("You can't have an empty list item")
-        # print(response.content.decode())
-        self.assertContains(response, expected_error)
+    #     # escape because there's an ' in the string and django html escapes those
+    #     expected_error = escape("You can't have an empty list item")
+    #     # print(response.content.decode())
+    #     self.assertContains(response, expected_error)
 
 
     def test_invalid_list_items_arent_saved(self):
         self.client.post('/lists/new', data={'item_text': ''})
         self.assertEqual(List.objects.count(), 0)
         self.assertEqual(Item.objects.count(), 0)
+
+
+    # If there’s a validation error, we should render the home template, with
+    # a 200.
+    def test_for_invalid_input_renders_home_template(self):
+        response = self.client.post('/lists/new', data={'text': ''})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'home.html')
+
+    # If there’s a validation error, the response should contain our error
+    # text.
+    def test_validation_errors_are_shown_on_home_page(self):
+        response = self.client.post('/lists/new', data={'text': ''})
+        self.assertContains(response, escape(EMPTY_ITEM_ERROR))
+
+    # If there’s a validation error, we should pass our form object to the
+    # template.
+    def test_for_invalid_input_passes_form_to_template(self):
+        response = self.client.post('/lists/new', data={'text': ''})
+        self.assertIsInstance(response.context['form'], ItemForm)
 
