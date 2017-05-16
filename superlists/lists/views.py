@@ -36,14 +36,18 @@ from lists.models import Item, List
 def home_page(request):
     return render(request, 'home.html', {'form': ItemForm()})
 
-
+# uses form data
 def new_list(request):
+    # passes the request.POST data into the form’s constructor.
     form = ItemForm(data=request.POST)
+    # form.is_valid() to determine whether this is a good or a bad submission.
     if form.is_valid():
         list_ = List.objects.create()
         print('getting here')
         form.save(for_list=list_)
         return redirect(list_)
+    # if form data is bad return the template, which will handle
+    # displaying an error message
     else:
         return render(request, 'home.html', {"form": form})
 
@@ -54,6 +58,7 @@ def new_list(request):
     return redirect(list_)
 
 # list_id is captured from the url.py capture group (.+)
+
 def view_list(request, list_id):
     list_ = List.objects.get(id=list_id)
     form = ItemForm()
@@ -63,6 +68,7 @@ def view_list(request, list_id):
             form.save(for_list=list_)
             return redirect(list_)
     return render(request, 'list.html', {'list': list_, "form": form})
+    # return render(request, 'list.html', {'list': list_, "form": form})
 
 # replaced with the view above
 # 
