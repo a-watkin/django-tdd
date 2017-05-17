@@ -35,7 +35,10 @@ class ItemForm(forms.models.ModelForm):
             'text': {'required': EMPTY_ITEM_ERROR}
         }
 
-
+    # needed so the form can save to the database
     def save(self, for_list):
+        # The .instance attribute on a form represents the database object
+        # that is being modified or created.
         self.instance.list = for_list
+        # directly uses the model class
         return super().save()
