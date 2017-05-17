@@ -43,7 +43,7 @@ def new_list(request):
     # form.is_valid() to determine whether this is a good or a bad submission.
     if form.is_valid():
         list_ = List.objects.create()
-        print('getting here')
+        # print('getting here')
         form.save(for_list=list_)
         return redirect(list_)
     # if form data is bad return the template, which will handle
