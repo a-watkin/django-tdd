@@ -70,9 +70,18 @@ class ListViewTest(TestCase):
         self.assertContains(response, expected_error)
 
     def test_displays_item_form(self):
+        # creates a new list_ object
         list_ = List.objects.create()
+        # gets the url to that object created above
         response = self.client.get(f'/lists/{list_.id}/')
+        # asserts that the request has a form object, 
+        # form is just one of many context?
+        # 
+        # ItemForm is the name of the class in forms.py
+        # context is just for testing, its the django built in faux browser
         self.assertIsInstance(response.context['form'], ItemForm)
+        # response has the name in the context above? as text
+        # 
         self.assertContains(response, 'name="text"')
 
     # helper method
@@ -100,7 +109,7 @@ class ListViewTest(TestCase):
         response = self.post_invalid_input()
         self.assertContains(response, escape(EMPTY_ITEM_ERROR))
 
-    @skip
+
     def test_duplicate_item_validation_errors_end_up_on_lists_page(self):
         list1 = List.objects.create()
         item1 = Item.objects.create(list=list1, text='textey')
@@ -109,9 +118,12 @@ class ListViewTest(TestCase):
             data={'text': 'textey'}
         )
 
-        expected_error = escape("You've already got this in your list")
+        expected_error = escape(DUPLICATE_ITEM_ERROR)
+        # checks the expected error is the same as the constant
         self.assertContains(response, expected_error)
+        # checks that list.html is returned
         self.assertTemplateUsed(response, 'list.html')
+        # checks the number of items in the list is 1
         self.assertEqual(Item.objects.all().count(), 1)
 
 class NewListTest(TestCase):
