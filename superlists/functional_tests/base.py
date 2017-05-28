@@ -24,7 +24,7 @@ class FunctionalTest(StaticLiveServerTestCase):
     # always assumes you want to use its own test server, which it makes
     # available at self.live_server_url.
     def setUp(self):
-        self.browser = webdriver.Chrome('C:/Users/adam/Desktop/chromedriver.exe')
+        self.browser = webdriver.Chrome('C:/selenium-driver/chromedriver.exe')
         # staging server by default uses djangos dev server
         # this changes that so that it looks for an environmental variable 
         staging_server = os.environ.get('STAGING_SERVER') 

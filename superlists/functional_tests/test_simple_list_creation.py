@@ -66,7 +66,7 @@ class NewVisitorTest(FunctionalTest):
         self.browser.refresh()
 
         self.browser.quit()
-        self.browser = webdriver.Chrome('c:/Users/adam/Desktop/chromedriver.exe')
+        self.browser = webdriver.Chrome('C:/selenium-driver/chromedriver.exe')
 
         # Francis visits the home page.  There is no sign of Edith's
         # list
