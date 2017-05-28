@@ -1,18 +1,11 @@
-from django.core.urlresolvers import resolve
 from django.test import TestCase
-from lists.views import home_page
-
-# for the database tests
-from lists.models import Item, List
-
-# django escapes apostrophes
-# this is used so you can match strings to that
 from django.utils.html import escape
 
-from lists.forms import ItemForm, EMPTY_ITEM_ERROR
-
-from unittest import skip
-
+from lists.forms import (
+    DUPLICATE_ITEM_ERROR, EMPTY_ITEM_ERROR,
+    ExistingListItemForm, ItemForm,
+)
+from lists.models import Item, List
 
 # this is the refactored version of the class above 
 class HomePageTest(TestCase):
@@ -22,6 +15,10 @@ class HomePageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
 
+
+    def test_home_page_uses_item_form(self):
+        response = self.client.get('/')
+        self.assertIsInstance(response.context['form'], ItemForm)
 
 
 class ListViewTest(TestCase):
@@ -109,7 +106,25 @@ class ListViewTest(TestCase):
         response = self.post_invalid_input()
         self.assertContains(response, escape(EMPTY_ITEM_ERROR))
 
-    @skip
+    # @skip
+    # def test_duplicate_item_validation_errors_end_up_on_lists_page(self):
+    #     list1 = List.objects.create()
+    #     item1 = Item.objects.create(list=list1, text='textey')
+    #     response = self.client.post(
+    #         f'/lists/{list1.id}/',
+    #         data={'text': 'textey'}
+    #     )
+
+    #     expected_error = escape(DUPLICATE_ITEM_ERROR)
+    #     # expected_error = escape("You've already got this in your list")
+    #     # checks the expected error is the same as the constant
+    #     self.assertContains(response, expected_error)
+    #     # checks that list.html is returned
+    #     self.assertTemplateUsed(response, 'list.html')
+    #     # checks the number of items in the list is 1
+    #     self.assertEqual(Item.objects.all().count(), 1)
+
+
     def test_duplicate_item_validation_errors_end_up_on_lists_page(self):
         list1 = List.objects.create()
         item1 = Item.objects.create(list=list1, text='textey')
@@ -119,12 +134,10 @@ class ListViewTest(TestCase):
         )
 
         expected_error = escape(DUPLICATE_ITEM_ERROR)
-        # checks the expected error is the same as the constant
         self.assertContains(response, expected_error)
-        # checks that list.html is returned
         self.assertTemplateUsed(response, 'list.html')
-        # checks the number of items in the list is 1
         self.assertEqual(Item.objects.all().count(), 1)
+
 
 class NewListTest(TestCase):
 
