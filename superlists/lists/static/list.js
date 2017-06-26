@@ -13,8 +13,15 @@
 // console.log('list.js loaded');
 
 
+
+
+// create a name space
+window.Superlists = {};
+
 // so the above but being called by inline script
-var initialize = function () {
+// 
+// and this makes initialize part of the namespace of Superlists
+window.Superlists.initialize = function () {
   // console.log('initialize called');
   $('input[name="text"]').on('keypress', function () {
     // console.log('in keypress handler');
