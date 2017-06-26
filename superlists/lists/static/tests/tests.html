@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Javascript tests</title>
+  <link rel="stylesheet" href="qunit-2.3.3.css">
+</head>
+<body>
+
+  <!-- tear up and tear down for testing -->
+  <!-- in other words this part is reset before each test -->
+  <div id="qunit"></div>
+  <div id="qunit-fixture">
+      <form>
+          <input name="text" />
+          <div class="has-error">Error text</div>
+      </form>
+  </div>
+
+  <!-- import jQuery -->
+  <script src="../jquery-3.2.1.js"></script>
+
+  <!-- uses jQuery to hide the error message and pass the test -->
+  <script src="../list.js"></script>
+
+  <!-- testing framework -->
+  <script src="qunit-2.3.3.js"></script>
+
+  <script>
+
+// console.log('qunit tests start');
+
+
+QUnit.test("errors should be hidden on keypress", function (assert) {
+  // console.log('in test 1');
+  initialize();
+  // trigger is used for dom events
+  $('input[name="text"]').trigger('keypress');
+  assert.equal($('.has-error').is(':visible'), false);
+});
+
+QUnit.test("errors aren't hidden if there is no keypress", function (assert) {
+  // console.log('in test 2');
+  initialize();
+  assert.equal($('.has-error').is(':visible'), true);
+});
+
+  </script>
+</body>
+</html>
+
+
+
+<!-- But, thinking it through, each test is going to "reset"  -->
