@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import platform
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -76,7 +78,7 @@ WSGI_APPLICATION = 'superlists.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '../database/db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, '{}database/db.sqlite3'.format('' if platform.system() == "Windows" else '../')),
     }
 }
 
@@ -121,4 +123,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # defines the location that all the static content will be found in
 # useful for deployment
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '{}static'.format('' if platform.system() == "Windows" else '../')))
