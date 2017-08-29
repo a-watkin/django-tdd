@@ -1,0 +1,296 @@
+raphy
+[adam@superlists-staging.awatkin.eu] out:   Found existing installation: cryptog
+raphy 2.0.3
+[adam@superlists-staging.awatkin.eu] out:     Uninstalling cryptography-2.0.3:
+[adam@superlists-staging.awatkin.eu] out:       Successfully uninstalled cryptog
+raphy-2.0.3
+[adam@superlists-staging.awatkin.eu] out:   Running setup.py install for cryptog
+raphy ... ←[?25lerror
+[adam@superlists-staging.awatkin.eu] out:     Complete output from command /home
+/adam/sites/superlists-staging.awatkin.eu/virtualenv/bin/python3.6 -u -c "import
+ setuptools, tokenize;__file__='/tmp/pip-build-csq1shmc/cryptography/setup.py';f
+=getattr(tokenize, 'open', open)(__file__);code=f.read().replace('\r\n', '\n');f
+.close();exec(compile(code, __file__, 'exec'))" install --record /tmp/pip-pe7nss
+6a-record/install-record.txt --single-version-externally-managed --compile --ins
+tall-headers /home/adam/sites/superlists-staging.awatkin.eu/virtualenv/include/s
+ite/python3.6/cryptography:
+[adam@superlists-staging.awatkin.eu] out:     running install
+[adam@superlists-staging.awatkin.eu] out:     running build
+[adam@superlists-staging.awatkin.eu] out:     running build_py
+[adam@superlists-staging.awatkin.eu] out:     creating build
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6/cryptography
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/fernet.py
+ -> build/lib.linux-x86_64-3.6/cryptography
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/__about__
+.py -> build/lib.linux-x86_64-3.6/cryptography
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/exception
+s.py -> build/lib.linux-x86_64-3.6/cryptography
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/utils.py
+-> build/lib.linux-x86_64-3.6/cryptography
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/__init__.
+py -> build/lib.linux-x86_64-3.6/cryptography
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6/cryptography/hazmat
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/__
+init__.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6/cryptography/x509
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/x509/base
+.py -> build/lib.linux-x86_64-3.6/cryptography/x509
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/x509/oid.
+py -> build/lib.linux-x86_64-3.6/cryptography/x509
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/x509/gene
+ral_name.py -> build/lib.linux-x86_64-3.6/cryptography/x509
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/x509/exte
+nsions.py -> build/lib.linux-x86_64-3.6/cryptography/x509
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/x509/cert
+ificate_transparency.py -> build/lib.linux-x86_64-3.6/cryptography/x509
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/x509/__in
+it__.py -> build/lib.linux-x86_64-3.6/cryptography/x509
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/x509/name
+.py -> build/lib.linux-x86_64-3.6/cryptography/x509
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6/cryptography/hazmat/bindings
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/bi
+ndings/__init__.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/bindings
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6/cryptography/hazmat/backends
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/interfaces.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/backends
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/__init__.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/backends
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6/cryptography/hazmat/primitives
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/hmac.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primitives
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/keywrap.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primitives
+
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/interfaces.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primiti
+ves
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/constant_time.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/prim
+itives
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/serialization.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/prim
+itives
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/padding.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primitives
+
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/mac.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primitives
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/cmac.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primitives
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/hashes.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primitives
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/__init__.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primitive
+s
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6/cryptography/hazmat/bindings/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/bi
+ndings/openssl/binding.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/bind
+ings/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/bi
+ndings/openssl/_conditional.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat
+/bindings/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/bi
+ndings/openssl/__init__.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/bin
+dings/openssl
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6/cryptography/hazmat/backends/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/hmac.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/backend
+s/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/ciphers.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/back
+ends/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/x509.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/backend
+s/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/rsa.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/backends
+/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/dsa.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/backends
+/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/encode_asn1.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/
+backends/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/utils.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/backen
+ds/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/backend.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/back
+ends/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/decode_asn1.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/
+backends/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/cmac.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/backend
+s/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/hashes.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/backe
+nds/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/__init__.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/bac
+kends/openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/dh.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/backends/
+openssl
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/ba
+ckends/openssl/ec.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/backends/
+openssl
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6/cryptography/hazmat/primitives/twofactor
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/twofactor/utils.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/pr
+imitives/twofactor
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/twofactor/totp.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/pri
+mitives/twofactor
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/twofactor/__init__.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat
+/primitives/twofactor
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/twofactor/hotp.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/pri
+mitives/twofactor
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6/cryptography/hazmat/primitives/asymmetric
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/asymmetric/padding.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat
+/primitives/asymmetric
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/asymmetric/rsa.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/pri
+mitives/asymmetric
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/asymmetric/dsa.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/pri
+mitives/asymmetric
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/asymmetric/utils.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/p
+rimitives/asymmetric
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/asymmetric/__init__.py -> build/lib.linux-x86_64-3.6/cryptography/hazma
+t/primitives/asymmetric
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/asymmetric/dh.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/prim
+itives/asymmetric
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/asymmetric/ec.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/prim
+itives/asymmetric
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6/cryptography/hazmat/primitives/ciphers
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/ciphers/base.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primi
+tives/ciphers
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/ciphers/algorithms.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat
+/primitives/ciphers
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/ciphers/modes.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/prim
+itives/ciphers
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/ciphers/__init__.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/p
+rimitives/ciphers
+[adam@superlists-staging.awatkin.eu] out:     creating build/lib.linux-x86_64-3.
+6/cryptography/hazmat/primitives/kdf
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/kdf/hkdf.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primitive
+s/kdf
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/kdf/scrypt.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primiti
+ves/kdf
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/kdf/concatkdf.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/prim
+itives/kdf
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/kdf/__init__.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primi
+tives/kdf
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/kdf/x963kdf.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primit
+ives/kdf
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/kdf/pbkdf2.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primiti
+ves/kdf
+[adam@superlists-staging.awatkin.eu] out:     copying src/cryptography/hazmat/pr
+imitives/kdf/kbkdf.py -> build/lib.linux-x86_64-3.6/cryptography/hazmat/primitiv
+es/kdf
+[adam@superlists-staging.awatkin.eu] out:     running egg_info
+[adam@superlists-staging.awatkin.eu] out:     writing src/cryptography.egg-info/
+PKG-INFO
+[adam@superlists-staging.awatkin.eu] out:     writing dependency_links to src/cr
+yptography.egg-info/dependency_links.txt
+[adam@superlists-staging.awatkin.eu] out:     writing entry points to src/crypto
+graphy.egg-info/entry_points.txt
+[adam@superlists-staging.awatkin.eu] out:     writing requirements to src/crypto
+graphy.egg-info/requires.txt
+[adam@superlists-staging.awatkin.eu] out:     writing top-level names to src/cry
+ptography.egg-info/top_level.txt
+[adam@superlists-staging.awatkin.eu] out:     warning: manifest_maker: standard
+file '-c' not found
+[adam@superlists-staging.awatkin.eu] out:
+[adam@superlists-staging.awatkin.eu] out:     reading manifest file 'src/cryptog
+raphy.egg-info/SOURCES.txt'
+[adam@superlists-staging.awatkin.eu] out:     reading manifest template 'MANIFES
+T.in'
+[adam@superlists-staging.awatkin.eu] out:     no previously-included directories
+ found matching 'docs/_build'
+[adam@superlists-staging.awatkin.eu] out:     warning: no previously-included fi
+les matching '*' found under directory 'vectors'
+[adam@superlists-staging.awatkin.eu] out:     writing manifest file 'src/cryptog
+raphy.egg-info/SOURCES.txt'
+[adam@superlists-staging.awatkin.eu] out:     running build_ext
+[adam@superlists-staging.awatkin.eu] out:     generating cffi module 'build/temp
+.linux-x86_64-3.6/_padding.c'
+[adam@superlists-staging.awatkin.eu] out:     creating build/temp.linux-x86_64-3
+.6
+[adam@superlists-staging.awatkin.eu] out:     generating cffi module 'build/temp
+.linux-x86_64-3.6/_constant_time.c'
+[adam@superlists-staging.awatkin.eu] out:     generating cffi module 'build/temp
+.linux-x86_64-3.6/_openssl.c'
+[adam@superlists-staging.awatkin.eu] out:     building '_openssl' extension
+[adam@superlists-staging.awatkin.eu] out:     creating build/temp.linux-x86_64-3
+.6/build
+[adam@superlists-staging.awatkin.eu] out:     creating build/temp.linux-x86_64-3
+.6/build/temp.linux-x86_64-3.6
+[adam@superlists-staging.awatkin.eu] out:     x86_64-linux-gnu-gcc -pthread -DND
+EBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -g -fstack-protector-strong -Wform
+at -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC -I/home/adam/si
+tes/superlists-staging.awatkin.eu/virtualenv/include -I/usr/include/python3.6m -
+c build/temp.linux-x86_64-3.6/_openssl.c -o build/temp.linux-x86_64-3.6/build/te
+mp.linux-x86_64-3.6/_openssl.o
+[adam@superlists-staging.awatkin.eu] out:     build/temp.linux-x86_64-3.6/_opens
+sl.c:12:24: fatal error: pyconfig.h: No such file or directory
+[adam@superlists-staging.awatkin.eu] out:     compilation terminated.
+[adam@superlists-staging.awatkin.eu] out:     error: command 'x86_64-linux-gnu-g
+cc' failed with exit status 1
+[adam@superlists-staging.awatkin.eu] out:
+[adam@superlists-staging.awatkin.eu] out:     ----------------------------------
+------
+[adam@superlists-staging.awatkin.eu] out: ←[?25h  Rolling back uninstall of cryp
+tography
+[adam@superlists-staging.awatkin.eu] out: ←[31mCommand "/home/adam/sites/superli
+sts-staging.awatkin.eu/virtualenv/bin/python3.6 -u -c "import setuptools, tokeni
+ze;__file__='/tmp/pip-build-csq1shmc/cryptography/setup.py';f=getattr(tokenize,
+'open', open)(__file__);code=f.read().replace('\r\n', '\n');f.close();exec(compi
+le(code, __file__, 'exec'))" install --record /tmp/pip-pe7nss6a-record/install-r
+ecord.txt --single-version-externally-managed --compile --install-headers /home/
+adam/sites/superlists-staging.awatkin.eu/virtualenv/include/site/python3.6/crypt
+ography" failed with error code 1 in /tmp/pip-build-csq1shmc/cryptography/←[0m
+[adam@superlists-staging.awatkin.eu] out:
+
+
+Fatal error: run() received nonzero return code 1 while executing!
+
+Requested: /home/adam/sites/superlists-staging.awatkin.eu/source/../virtualenv/b
+in/pip install -r /home/adam/sites/superlists-staging.awatkin.eu/source/requirem
+ents.txt
+Executed: /bin/bash -l -c "/home/adam/sites/superlists-staging.awatkin.eu/source
+/../virtualenv/bin/pip install -r /home/adam/sites/superlists-staging.awatkin.eu
+/source/requirements.txt"
+
+Aborting.
