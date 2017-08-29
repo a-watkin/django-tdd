@@ -30,7 +30,7 @@ def _get_latest_source(source_folder):
         # git fetch inside an existing repository pulls down all the latest
         # commits from the Web (it’s like git pull, but without immediately
         # updating the live source tree).
-        run(f'cd {source_folder} && git fetch')   
+        run(f'cd {source_folder} && git fetch') 
     else:
         run(f'git clone {REPO_URL} {source_folder}')  
 
@@ -51,14 +51,14 @@ def _get_latest_source(source_folder):
     # push.
 
 
-
+# updates settings.py
 def _update_settings(source_folder, site_name):
     settings_path = source_folder + '/superlists/settings.py'
-    # string substitution True becomes False
+    # string substitution: True becomes False
     sed(settings_path, "DEBUG = True", "DEBUG = False")  
     sed(settings_path,
-        'ALLOWED_HOSTS =.+$',
         # And here it is adjusting ALLOWED_HOSTS, using a regex to match the right line.
+        'ALLOWED_HOSTS =.+$',
         f'ALLOWED_HOSTS = ["{site_name}"]'
     )
     # generates a new secret key, and replaced the current key with it
@@ -73,10 +73,9 @@ def _update_settings(source_folder, site_name):
     # automatically add a newline if the file doesn’t end in one. Hence the
     # back-n.)
 
-    # I’m using a relative import (from .secret_key instead of from
+    # using a relative import (from .secret_key instead of from
     # secret_key) to be absolutely sure we’re importing the local module,
-    # rather than one from somewhere else on sys.path. I’ll talk a bit more
-    # about relative imports in the next chapter.
+    # rather than one from somewhere else on sys.path.
     append(settings_path, '\nfrom .secret_key import SECRET_KEY')  
 
 
@@ -86,10 +85,11 @@ def _update_virtualenv(source_folder):
     # checks if a venv already exists and creates it if it does not
     if not exists(virtualenv_folder + '/bin/pip'):  
         run(f'python3.6 -m venv {virtualenv_folder}')
-    # installs pip
+    # installs required packages
     run(f'{virtualenv_folder}/bin/pip install -r {source_folder}/requirements.txt') 
 
 
+# Updating static files is a single command:
 def _update_static_files(source_folder):
     run(
         # You can split long strings across multiple lines like this in
@@ -104,7 +104,7 @@ def _update_static_files(source_folder):
     )
 
 
-
+# Migrating the database if necessary
 # The --noinput removes any interactive yes/no confirmations that fabric would
 # find hard to deal with.
 def _update_database(source_folder):
@@ -115,10 +115,8 @@ def _update_database(source_folder):
 
 
 def deploy():
-    # env.host will contain the address of the server we’ve specified at the
-    # command line, e.g., superlists.ottg.eu.
-
     # env.user will contain the username you’re using to log in to the server.
+    # env.host will contain the address of the server we’ve specified at the command line
     site_folder = f'/home/{env.user}/sites/{env.host}'
 
     source_folder = site_folder + '/source'
@@ -128,3 +126,4 @@ def deploy():
     _update_virtualenv(source_folder)
     _update_static_files(source_folder)
     _update_database(source_folder)
+
