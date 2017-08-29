@@ -127,3 +127,9 @@ def deploy():
     _update_static_files(source_folder)
     _update_database(source_folder)
 
+# Still getting an error when trying to install cryptography apparently i need
+# python dev stuff for ubuntu and it has to also have the same for python3
+
+# sudo apt-get install build-essential libssl-dev libffi-dev python-dev
+# sudo apt-get install build-essential libssl-dev libffi-dev python3-dev
+
