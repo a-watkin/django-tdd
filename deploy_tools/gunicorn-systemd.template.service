@@ -1,13 +1,13 @@
 [Unit]
-Description=Gunicorn server for awatkin.eu
+Description=Gunicorn server for superlists.awatkin.eu
 
 [Service]
-Restart=on-failure  
-User=adam  
-WorkingDirectory=/home/adam/sites/awatkin.eu/source  
-ExecStart=/home/adam/sites/awatkin.eu/virtualenv/bin/gunicorn \
-    --bind unix:/tmp/awatkin.eu.socket \
-    superlists.wsgi:application  
+Restart=on-failure
+User=adam
+WorkingDirectory=/home/adam/sites/superlists.awatkin.eu/source
+ExecStart=/home/adam/sites/superlists.awatkin.eu/virtualenv/bin/gunicorn \
+    --bind unix:/tmp/superlists.awatkin.eu.socket \
+    superlists.wsgi:application
 
 [Install]
-WantedBy=multi-user.target 
+WantedBy=multi-user.target
