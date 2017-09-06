@@ -13,16 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
-from lists import views as list_views
-from lists import urls as list_urls
-from accounts import urls as accounts_urls
-
+from django.conf.urls import url
+from accounts import views
+from django.contrib.auth.views import logout
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
-    url(r'^$', list_views.home_page, name='home'),
-    # url(r'^lists/new$', views.new_list, name='new_list'),
+    # url(r'^$', views.home_page, name='home'),
+    # 
+    # django prefixes these with /list...remember?
+    # url(r'^new$', views.new_list, name='new_list'),
 
 
     # It’s time to learn how we can pass parameters from URLs to views: (.+)
@@ -32,16 +32,15 @@ urlpatterns = [
     # words, if we go to the URL /lists/1/, view_list will get a second
     # argument after the normal request argument, namely the string "1". If we
     # go to /lists/foo/, we get view_list(request, "foo").
-    # url(r'^lists/(\d+)/$', views.view_list, name='view_list'),
+    # url(r'^/', views.send_login_email, name='home_redirect'),
 
-    # url(r'^lists/(\d+)/add_item$', views.add_item, name='add_item'),
+    # url(r'^(\d+)/add_item$', views.add_item, name='add_item'),
 
 
-    # url(r'^$', list_views.home_page, name='home'),
-    url(r'^lists/', include(list_urls)),
 
-    # url(r'accounts/', include(account_urls)),
+    # name='send_login_email' was missing here.
+    url(r'^send_login_email', views.send_login_email, name='send_login_email'),
 
-    url(r'^accounts/', include(accounts_urls)),
+    url(r'^login$', views.redirect_after_login, name='login'),
 
 ]
