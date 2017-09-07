@@ -45,4 +45,6 @@ urlpatterns = [
 
     url(r'^login$', views.login, name='login'),
 
+    url(r'^logout$', logout, {'next_page': '/'}, name='logout'),
+
 ]

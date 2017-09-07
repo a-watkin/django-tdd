@@ -28,10 +28,10 @@ def send_login_email(request):
     return redirect('/')
 
 
-def redirect_after_login(request):
-    # param1 = request.get_raw_uri()
-    # print(param1)
-    return redirect('/')
+# def redirect_after_login(request):
+#     # param1 = request.get_raw_uri()
+#     # print(param1)
+#     return redirect('/')
 
 
 def login(request):
