@@ -41,6 +41,8 @@ urlpatterns = [
     # name='send_login_email' was missing here.
     url(r'^send_login_email', views.send_login_email, name='send_login_email'),
 
-    url(r'^login$', views.redirect_after_login, name='login'),
+    # url(r'^login$', views.redirect_after_login, name='login'),
+
+    url(r'^login$', views.login, name='login'),
 
 ]
