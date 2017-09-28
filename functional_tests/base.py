@@ -26,10 +26,10 @@ class FunctionalTest(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome('C:/selenium-driver/chromedriver.exe')
         # staging server by default uses djangos dev server
-        # this changes that so that it looks for an environmental variable 
+        # this changes that so that it looks for an environmental variable
         staging_server = os.environ.get('STAGING_SERVER') 
         if staging_server:
-            self.live_server_url = 'http://' + staging_server  
+            self.live_server_url = 'http://' + self.staging_server  
 
     # will execute even if there is an error
     def tearDown(self):
