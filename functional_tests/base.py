@@ -8,6 +8,7 @@ from selenium import webdriver
 # python manage.py test functional_tests.test_list_item_validation
 
 MAX_WAIT = 10
+print('base called')
 
 # you have to inherit from LiveServerTestCase
 class FunctionalTest(StaticLiveServerTestCase):
@@ -23,13 +24,24 @@ class FunctionalTest(StaticLiveServerTestCase):
     # that LiveServerTestCase had certain limitations? Well, one is that it
     # always assumes you want to use its own test server, which it makes
     # available at self.live_server_url.
+    # def setUp(self):
+    #     self.browser = webdriver.Chrome('C:/selenium-driver/chromedriver.exe')
+    #     # staging server by default uses djangos dev server
+    #     # this changes that so that it looks for an environmental variable
+    #     staging_server = os.environ.get('STAGING_SERVER')
+    #     print(staging_server, 'WHAT THE ACTUAL FUCK')
+    #     if staging_server:
+    #         print('ooo can do')
+    #         self.live_server_url = 'http://' + self.staging_server
+
+
     def setUp(self):
         self.browser = webdriver.Chrome('C:/selenium-driver/chromedriver.exe')
-        # staging server by default uses djangos dev server
-        # this changes that so that it looks for an environmental variable
-        staging_server = os.environ.get('STAGING_SERVER') 
-        if staging_server:
-            self.live_server_url = 'http://' + self.staging_server  
+        self.staging_server = os.environ.get('STAGING_SERVER')
+        if self.staging_server:
+            self.live_server_url = 'http://' + self.staging_server
+            reset_database(self.staging_server)
+
 
     # will execute even if there is an error
     def tearDown(self):
