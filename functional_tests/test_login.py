@@ -10,12 +10,12 @@ from .base import FunctionalTest
 # TEST_EMAIL = 'edith@example.com'
 SUBJECT = 'Your login link for Superlists'
 
-print('why?', os.environ)
+# print('why?', os.environ)
 
 class LoginTest(FunctionalTest):
 
     def wait_for_email(self, test_email, subject):
-        print('called')
+        print('called', subject)
         if not self.staging_server:
             email = mail.outbox[0]
             self.assertIn(test_email, email.to)
@@ -31,6 +31,7 @@ class LoginTest(FunctionalTest):
             while time.time() - start < 60:
                 # get 10 newest messages
                 count, _ = inbox.stat()
+                print('inbox.stat, count', count)
                 for i in reversed(range(max(1, count - 10), count + 1)):
                     print('getting msg', i)
                     _, lines, __ = inbox.retr(i)
@@ -39,6 +40,18 @@ class LoginTest(FunctionalTest):
                         email_id = i
                         body = '\n'.join(lines)
                         return body
+
+                # time.sleep(2)
+                # for i in range(10):
+                #     print('getting msg', i, count)
+                #     _, lines, __ = inbox.retr(i)
+                #     lines = [l.decode('utf8', errors='ignore') for l in lines]
+                #     if f'Subject: {subject}' in lines:
+                #         email_id = i
+                #         body = '\n'.join(lines)
+                #         return body
+
+
                 time.sleep(5)
         finally:
             if email_id:

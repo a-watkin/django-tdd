@@ -4,6 +4,7 @@ Description=Gunicorn server for superlists.awatkin.eu
 [Service]
 Restart=on-failure
 User=adam
+Environment=EMAIL_PASSWORD=SEKRIT
 WorkingDirectory=/home/adam/sites/superlists.awatkin.eu/source
 ExecStart=/home/adam/sites/superlists.awatkin.eu/virtualenv/bin/gunicorn \
     --bind unix:/tmp/superlists.awatkin.eu.socket \
