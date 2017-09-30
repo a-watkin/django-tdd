@@ -7,6 +7,8 @@ User=adam
 WorkingDirectory=/home/adam/sites/superlists.awatkin.eu/source
 ExecStart=/home/adam/sites/superlists.awatkin.eu/virtualenv/bin/gunicorn \
     --bind unix:/tmp/superlists.awatkin.eu.socket \
+    --access-logfile ../access.log \
+    --error-logfile ../error.log \
     superlists.wsgi:application
 
 [Install]
