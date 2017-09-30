@@ -10,7 +10,7 @@ from .base import FunctionalTest
 # TEST_EMAIL = 'edith@example.com'
 SUBJECT = 'Your login link for Superlists'
 
-print('why?', os.environ['EMAIL_PASSWORD'])
+print('why?', os.environ)
 
 class LoginTest(FunctionalTest):
 
@@ -51,7 +51,7 @@ class LoginTest(FunctionalTest):
         # and notices a "Log in" section in the navbar for the first time
         # It's telling her to enter her email address, so she does
         if self.staging_server:
-            test_email = 'test+atomicpenguines@gmail.com'
+            test_email = 'atomicpenguines@gmail.com'
         else:
             test_email = 'edith@example.com'
 
