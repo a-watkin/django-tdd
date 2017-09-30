@@ -34,6 +34,9 @@ urlpatterns = [
     # go to /lists/foo/, we get view_list(request, "foo").
     url(r'^(\d+)/$', views.view_list, name='view_list'),
 
+    # regex, controller (logic), reverse lookup for templates
+    url(r'^users/(.+)/$', views.my_lists, name='my_lists'),
+
     # url(r'^(\d+)/add_item$', views.add_item, name='add_item'),
 
 ]

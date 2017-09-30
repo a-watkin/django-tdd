@@ -19,29 +19,39 @@
 
 
 
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">Superlists</a>
-          {% if user.email %}
-            <ul class="nav navbar-nav navbar-right">
-              <li class="navbar-text">Logged in as {{ user.email }}</li>
-              
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Superlists</a>
 
-              <li><a href="{% url 'logout' %}">Log out</a></li>
+                {% if user.email %}
+                <ul class="nav navbar-nav navbar-left">
 
 
-            </ul>
-          {% else %}
-            <form class="navbar-form navbar-right"
-                  method="POST"
-                  action="{% url 'send_login_email' %}">
-              <span>Enter email to log in:</span>
-              <input class="form-control" name="email" type="text" />
-              {% csrf_token %}
-            </form>
-          {% endif %}
-        </div>
-      </nav>
+                {#            right here genius #}
+                <li>
+                    <a href="{% url 'my_lists' user.email %}">My lists</a>
+                </ul>
+
+                {#            right here genius #}
+
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="navbar-text">Logged in as {{ user.email }}</li>
+                    <li><a href="{% url 'logout' %}">Log out</a></li>
+                </ul>
+
+                {% else %}
+                <form class="navbar-form navbar-right"
+                    method="POST"
+                    action="{% url 'send_login_email' %}">
+                    <span>Enter email to log in:</span>
+                    <input class="form-control" name="email" type="text" />
+                    {% csrf_token %}
+                </form>
+                {% endif %}
+            </div>
+        </nav>
 
 
 
@@ -83,14 +93,26 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          {% block extra_content %}
+          {% endblock %}
+        </div>
+      </div>
+
     </div>
 
-      <script>
+    {#    not really sure this is correct, i fucking hate these comment tags#}
+    <script src="/lists/static/jquery-3.2.1.js"></script>
+
+
+
+    <script>
         // onload boilerplate
         $( document ).ready(function () {
             window.Superlists.initialize();
         });
-      </script>
+    </script>
   </body>
 
 </html>
