@@ -3,6 +3,11 @@ from lists.models import Item, List
 from unittest import skip
 from django.core.exceptions import ValidationError
 
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+
 # class ListAndItemModelsTest(TestCase):
 
     # if you don't give a comment for a skip it skips but counts as a pass
@@ -57,6 +62,12 @@ class ItemModelTest(TestCase):
         item.list = list_
         item.save()
         self.assertIn(item, list_.item_set.all())
+
+    def test_lists_can_have_owners(self):
+        print('does it test this?')
+        user = User.objects.create(email='a@b.com')
+        list_ = List.objects.create(owner=user)
+        self.assertIn(list_, user.list_set.all())
 
 
 

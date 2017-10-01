@@ -1,30 +1,27 @@
+from django.conf import settings
 from django.db import models
 from django.core.urlresolvers import reverse
 
 
 class List(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)
+
     def get_absolute_url(self):
         return reverse('view_list', args=[self.id])
 
 
+    @property
+    def name(self):
+        return self.item_set.first().text
+
+
+
 class Item(models.Model):
-    # unique=True here would mean that it would have to be unique across
-    # all todo lists
     text = models.TextField(default='')
     list = models.ForeignKey(List, default=None)
 
-
-
-    # specify that a list item should be unique within a list
     class Meta:
-        
-        # 
-        # specify ordering
         ordering = ('id',)
-
-        # Sets of field names that, taken together, must be unique
-        # 
-        # one to many only
         unique_together = ('list', 'text')
 
 
