@@ -8,54 +8,34 @@
     <title>To-Do lists</title>
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/base.css" rel="stylesheet">
-    <script src="/static/jquery-3.2.1.js"></script>
-    <script src="/static/list.js"></script>
   </head>
 
-
   <body>
-
     <div class="container">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Superlists</a>
+          {% if user.email %}
+            <ul class="nav navbar-nav navbar-left">
+              <li><a href="{% url 'my_lists' user.email %}">My lists</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="navbar-text">Logged in as {{ user.email }}</li>
+              <li><a href="{% url 'logout' %}">Log out</a></li>
+            </ul>
+          {% else %}
+            <form class="navbar-form navbar-right"
+                  method="POST"
+                  action="{% url 'send_login_email' %}">
+              <span>Enter email to log in:</span>
+              <input class="form-control" name="email" type="text" />
+              {% csrf_token %}
+            </form>
+          {% endif %}
+        </div>
+      </nav>
 
-
-
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">Superlists</a>
-
-                {% if user.email %}
-                <ul class="nav navbar-nav navbar-left">
-
-
-                {#            right here genius #}
-                <li>
-                    <a href="{% url 'my_lists' user.email %}">My lists</a>
-                </ul>
-
-                {#            right here genius #}
-
-
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="navbar-text">Logged in as {{ user.email }}</li>
-                    <li><a href="{% url 'logout' %}">Log out</a></li>
-                </ul>
-
-                {% else %}
-                <form class="navbar-form navbar-right"
-                    method="POST"
-                    action="{% url 'send_login_email' %}">
-                    <span>Enter email to log in:</span>
-                    <input class="form-control" name="email" type="text" />
-                    {% csrf_token %}
-                </form>
-                {% endif %}
-            </div>
-        </nav>
-
-
-
-            {% if messages %}
+      {% if messages %}
         <div class="row">
           <div class="col-md-8">
             {% for message in messages %}
@@ -73,15 +53,17 @@
         <div class="col-md-6 col-md-offset-3 jumbotron">
           <div class="text-center">
             <h1>{% block header_text %}{% endblock %}</h1>
-            <form method="POST" action="{% block form_action %}{% endblock %}">
-              {{ form.text }}
-              {% csrf_token %}
-              {% if form.errors %}  
-                <div class="form-group has-error">
-                  <div class="help-block">{{ form.text.errors }}</div>  
-                </div>
-              {% endif %}
-            </form>
+            {% block list_form %}
+              <form method="POST" action="{% block form_action %}{% endblock %}">
+                {{ form.text }}
+                {% csrf_token %}
+                {% if form.errors %}
+                  <div class="form-group has-error">
+                    <div class="help-block">{{ form.text.errors }}</div>
+                  </div>
+                {% endif %}
+              </form>
+            {% endblock %}
           </div>
         </div>
       </div>
@@ -99,20 +81,15 @@
           {% endblock %}
         </div>
       </div>
-
     </div>
-
-    {#    not really sure this is correct, i fucking hate these comment tags#}
-    <script src="/lists/static/jquery-3.2.1.js"></script>
-
-
+    <script src="/static/jquery-3.2.1.js"></script>
+    <script src="/static/list.js"></script>
 
     <script>
-        // onload boilerplate
-        $( document ).ready(function () {
-            window.Superlists.initialize();
-        });
+$(document).ready(function () {
+  window.Superlists.initialize();
+});
     </script>
-  </body>
 
+  </body>
 </html>
