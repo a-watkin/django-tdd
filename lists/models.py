@@ -15,7 +15,6 @@ class List(models.Model):
         return self.item_set.first().text
 
 
-
 class Item(models.Model):
     text = models.TextField(default='')
     list = models.ForeignKey(List, default=None)
@@ -23,7 +22,6 @@ class Item(models.Model):
     class Meta:
         ordering = ('id',)
         unique_together = ('list', 'text')
-
 
     def __str__(self):
         return self.text
