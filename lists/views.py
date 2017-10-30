@@ -38,3 +38,7 @@ def view_list(request, list_id):
 def my_lists(request, email):
     owner = User.objects.get(email=email)
     return render(request, 'my_lists.html', {'owner': owner})
+
+
+def about_page(request):
+    return render(request, 'about.html')

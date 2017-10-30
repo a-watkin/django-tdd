@@ -44,4 +44,7 @@ urlpatterns = [
 
     url(r'^accounts/', include(accounts_urls)),
 
+
+    url(r'^about/', list_views.about_page, name='about'),
+
 ]
