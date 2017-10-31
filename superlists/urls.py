@@ -24,6 +24,8 @@ urlpatterns = [
     url(r'^$', list_views.home_page, name='home'),
     # url(r'^lists/new$', views.new_list, name='new_list'),
 
+    # my about page
+    url(r'^about/', list_views.about_page, name='about'),
 
     # It’s time to learn how we can pass parameters from URLs to views: (.+)
     # is a capture group, it matches any character up to the /  
@@ -45,6 +47,6 @@ urlpatterns = [
     url(r'^accounts/', include(accounts_urls)),
 
 
-    url(r'^about/', list_views.about_page, name='about'),
+
 
 ]
