@@ -59,7 +59,7 @@ def _update_settings(source_folder, site_name):
     sed(settings_path,
         # And here it is adjusting ALLOWED_HOSTS, using a regex to match the right line.
         'ALLOWED_HOSTS =.+$',
-        f'ALLOWED_HOSTS = ["{site_name}"]'
+        f'ALLOWED_HOSTS = ["{site_name}", ".awatkin.eu"]'
     )
     # generates a new secret key, and replaced the current key with it
     secret_key_file = source_folder + '/superlists/secret_key.py'
