@@ -27,6 +27,8 @@ urlpatterns = [
     # my about page
     url(r'^about/', list_views.about_page, name='about'),
 
+    url(r'^recent/', list_views.recent_page, name='recent'),
+
     # It’s time to learn how we can pass parameters from URLs to views: (.+)
     # is a capture group, it matches any character up to the /  
     # 

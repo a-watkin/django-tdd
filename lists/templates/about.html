@@ -5,7 +5,6 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>awatkin.eu</title>
-        <meta name="description" content="An interactive getting started guide for Brackets.">
         <link href="/static/about.css" rel="stylesheet">
     </head>
     <body>
@@ -21,8 +20,10 @@
             <br>
             <br>
             Towards this end I have undertaken several projects and frequently do online courses on various things.
-            You can see a list of what courses and projects I have
-            <a href="https://awatkin.eu/about/recent">done recently.</a>
+            You can see a list of what courses and projects I have done
+            {% url 'recent' as recent %}
+            <a href="{{ recent }}">recently</a>.
+
         </p>
 
         <h2>Academic Projects</h2>
@@ -30,7 +31,7 @@
         <ul>
         <li>
         <p>
-        <h4>Data analysis and management (TM351, Tutors: Dr. Tony Burrows and Ms. J buxton, 2016):</h4>
+        <h4>Data analysis and management (TM351, Tutors: Dr. Tony Burrows and Ms. J Buxton, 2016):</h4>
         An analysis of bat hibernation and roost data using K-means clustering and silhouette analysis.
         Statistical differences between the two datasets were also explored including the use of the Chi-squared test.
         Consideration was also given to data protection.
@@ -59,18 +60,17 @@
 
         <li>
 
-        <h4>Renewable energy systems (T313, Tutor: Mr J R Bradley 2015):</h3>
+        <h4>Renewable energy systems (T313, Tutor: Mr J R Bradley 2015):</h4>
         <p>
         An independent desk study was undertaken to advice on implementation of fabrics and renewable energy system improvements to a residential home.
         NHER plan assessor was used and a detailed financial assessment taking into account NPV and IRR was undertaken.
         Advice was then presented based on this analysis taking into account financial outcomes and CO2 emissions.
         </p>
         </li>
-        </ul>
 
         <h2>Personal projects</h2>
         <p>
-        <ul>
+
         <li>
         <p>
         <h4>Pricing service (2016):</h4>
