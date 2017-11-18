@@ -42,3 +42,6 @@ def my_lists(request, email):
 
 def about_page(request):
     return render(request, 'about.html')
+
+def recent_page(request):
+    return render(request, 'recent.html')
